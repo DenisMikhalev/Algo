@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 {
 	srand (time(NULL));
 
-	const int countElem = 1010001;
+	const int countElem = 1000001;
 	std::vector<unsigned int> src;
 	src.reserve(countElem);
 	fillVector(src, countElem);
@@ -37,11 +37,60 @@ int main(int argc, char* argv[])
 	std::cout << "QuickSort, total time: " << duration << std::endl;
 	isOrdered(src);
 
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	quickSortCutoff(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "QuickSort with CUTOFF, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	quickSortNotR(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "QuickSort not recursive, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
 	parallel_quickSort(&src.front(), src.size());
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel Quick sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_quickSortCutoff(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel Quick sort with CUTOFF, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_quickSortNotR(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel Quick not recursive, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	insertSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Insert sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	mergeSort(&src.front(), 0, src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Merge sort, total time: " << duration << std::endl;
 	isOrdered(src);
 
 	return 0;
