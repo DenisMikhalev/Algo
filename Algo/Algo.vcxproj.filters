@@ -35,10 +35,10 @@
     <ClInclude Include="all.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="parallel_merge.h">
+    <ClInclude Include="mergesort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="mergesort.h">
+    <ClInclude Include="parallel_mergesort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

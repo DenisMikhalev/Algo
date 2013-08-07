@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 {
 	srand (time(NULL));
 
-	const int countElem = 1000001;
+	const int countElem = 100000;
 	std::vector<unsigned int> src;
 	src.reserve(countElem);
 	fillVector(src, countElem);
@@ -91,6 +91,14 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Merge sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_mergeSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel merge sort, total time: " << duration << std::endl;
 	isOrdered(src);
 
 	return 0;
