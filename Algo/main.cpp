@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
 {
 	srand (time(NULL));
 
-	const int countElem = 100000;
+	const int countElem = 1000000;
 	std::vector<unsigned int> src;
 	src.reserve(countElem);
 	fillVector(src, countElem);
@@ -125,6 +125,14 @@ int main(int argc, char* argv[])
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
+	binInsertSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Insert binary sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
 	parallel_insertSort(&src.front(), src.size());
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
@@ -137,6 +145,14 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel insert sort with guarded key, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_binInsertSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel insert binary sort, total time: " << duration << std::endl;
 	isOrdered(src);
 
 	fillVector(src, countElem);

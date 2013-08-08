@@ -9,6 +9,8 @@
 <li>parallel insert sort</li>
 <li>insert sort with guarded key</li>
 <li>parallel insert sort with guarded key</li>
+<li>insert binary sort</li>
+<li>parallel insert binary sort</li>
 <li>quick sort</li>
 <li>parallel quick sort</li>
 <li>quick sort with CutOff</li>
