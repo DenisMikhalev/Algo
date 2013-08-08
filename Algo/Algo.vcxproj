@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="all.h" />
@@ -150,7 +151,10 @@
     <ClInclude Include="mergesort.h" />
     <ClInclude Include="parallel_mergesort.h" />
     <ClInclude Include="parallel_quicksort.h" />
+    <ClInclude Include="parallel_selectsort.h" />
     <ClInclude Include="quicksort.h" />
+    <ClInclude Include="selectsort.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

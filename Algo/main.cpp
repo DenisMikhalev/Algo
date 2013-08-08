@@ -17,7 +17,7 @@ void isOrdered(std::vector<T> src)
 	for (int i = 1; i < src.size(); ++i)
 	{
 		if (src[i - 1] > src[i])
-			std::cout << "Wrong order: " << i << " " << src[i - 1] << " " << src[i] << std::endl;
+			std::cout << "Wrong order! Index:" << i << " Prev:" << src[i - 1] << " Cur:" << src[i] << std::endl;
 	}
 }
 
@@ -99,6 +99,38 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel merge sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	selectSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Select sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	selectBiSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Select sort bidirectional, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_selectSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel select sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_selectBiSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel select sort bidirectional, total time: " << duration << std::endl;
 	isOrdered(src);
 
 	return 0;

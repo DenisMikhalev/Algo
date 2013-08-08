@@ -3,11 +3,8 @@
 template<class T>
 inline void parallel_quickSort(T* a, long nLength)
 {
-	unsigned long const min_per_thread = PARALLEL_QUICKSORT_MIN_PER_THREAD;
-	unsigned long const max_threads = (nLength + min_per_thread - 1) / min_per_thread;
-	const unsigned long nConcurrency = std::thread::hardware_concurrency();
-	const unsigned long nThreads = std::min(nConcurrency != 0 ? nConcurrency : 2 , max_threads);
-	const unsigned long nBlockSize = nLength / nThreads;
+	unsigned long nThreads = getCountThreads(nLength, PARALLEL_QUICKSORT_MIN_PER_THREAD);
+	unsigned long nBlockSize = getBlocksSize(nLength, nThreads);
 
 	T* begin = a;
 	if (nBlockSize < PARALLEL_QUICKSORT_CUTOFF)
@@ -28,17 +25,15 @@ inline void parallel_quickSort(T* a, long nLength)
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 
 	std::sort(begin + nBlockSize*nThreads, begin + nLength);
+
 	merge(begin, nBlockSize, nLength);
 }
 
 template<class T>
 inline void parallel_quickSortCutoff(T* a, long nLength)
 {
-	unsigned long const min_per_thread = PARALLEL_QUICKSORT_MIN_PER_THREAD;
-	unsigned long const max_threads = (nLength + min_per_thread - 1) / min_per_thread;
-	const unsigned long nConcurrency = std::thread::hardware_concurrency();
-	const unsigned long nThreads = std::min(nConcurrency != 0 ? nConcurrency : 2 , max_threads);
-	const unsigned long nBlockSize = nLength / nThreads;
+	unsigned long nThreads = getCountThreads(nLength, PARALLEL_QUICKSORT_MIN_PER_THREAD);
+	unsigned long nBlockSize = getBlocksSize(nLength, nThreads);
 
 	T* begin = a;
 	if (nBlockSize < PARALLEL_QUICKSORT_CUTOFF)
@@ -59,17 +54,15 @@ inline void parallel_quickSortCutoff(T* a, long nLength)
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 
 	std::sort(begin + nBlockSize*nThreads, begin + nLength);
+
 	merge(begin, nBlockSize, nLength);
 }
 
 template<class T>
 inline void parallel_quickSortNotR(T* a, long nLength)
 {
-	unsigned long const min_per_thread = PARALLEL_QUICKSORT_MIN_PER_THREAD;
-	unsigned long const max_threads = (nLength + min_per_thread - 1) / min_per_thread;
-	const unsigned long nConcurrency = std::thread::hardware_concurrency();
-	const unsigned long nThreads = std::min(nConcurrency != 0 ? nConcurrency : 2 , max_threads);
-	const unsigned long nBlockSize = nLength / nThreads;
+	unsigned long nThreads = getCountThreads(nLength, PARALLEL_QUICKSORT_MIN_PER_THREAD);
+	unsigned long nBlockSize = getBlocksSize(nLength, nThreads);
 
 	T* begin = a;
 	if (nBlockSize < PARALLEL_QUICKSORT_CUTOFF)
@@ -90,5 +83,6 @@ inline void parallel_quickSortNotR(T* a, long nLength)
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 
 	std::sort(begin + nBlockSize*nThreads, begin + nLength);
+
 	merge(begin, nBlockSize, nLength);
 }
