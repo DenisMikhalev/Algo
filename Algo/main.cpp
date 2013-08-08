@@ -10,17 +10,19 @@ void fillVector(std::vector<unsigned int>& dst, int countElem)
 	dst.clear();
 	for (int i = 0; i < countElem; ++i)
 	{
-		std::random_device randDev;
-		std::default_random_engine eng(randDev());
-		std::uniform_int_distribution<unsigned int> uniform_dist(1, INT_MAX);
-		dst.push_back(uniform_dist(eng));
+// 		std::random_device randDev;
+// 		std::default_random_engine eng(randDev());
+// 		std::uniform_int_distribution<unsigned int> uniform_dist(1, INT_MAX);
+// 		dst.push_back(uniform_dist(eng)
+
+		dst.push_back(rand() % RAND_MAX);
 	}
 }
 
 template<class T>
 void isOrdered(std::vector<T> src)
 {
-	const unsigned long nThreads = getCountThreads(src.size(), 1000);
+	const unsigned long nThreads = getCountThreads(src.size(), 1);
 	const unsigned long nBlockSize = getBlocksSize(src.size(), nThreads);
 
 	std::vector<std::thread> threads(nThreads - 1);
@@ -55,7 +57,7 @@ int main(int argc, char* argv[])
 {
 	srand (time(NULL));
 
-	const int countElem = 1000000;
+	const int countElem = 100000;
 	std::vector<unsigned int> src;
 	src.reserve(countElem);
 	fillVector(src, countElem);
