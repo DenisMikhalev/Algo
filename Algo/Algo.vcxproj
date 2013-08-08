@@ -149,6 +149,7 @@
     <ClInclude Include="all.h" />
     <ClInclude Include="insertsort.h" />
     <ClInclude Include="mergesort.h" />
+    <ClInclude Include="parallel_insertsort.h" />
     <ClInclude Include="parallel_mergesort.h" />
     <ClInclude Include="parallel_quicksort.h" />
     <ClInclude Include="parallel_selectsort.h" />

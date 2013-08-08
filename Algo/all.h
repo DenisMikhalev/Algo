@@ -10,9 +10,13 @@
 #define PARALLEL_SELECTSORT_CUTOFF			5
 #define PARALLEL_SELECTSORT_MIN_PER_THREAD	10
 
+#define PARALLEL_INSERTSORT_CUTOFF			5
+#define PARALLEL_INSERTSORT_MIN_PER_THREAD	40
+
 #include <algorithm>
 #include <thread>
 #include <future>
+#include <random>
 
 #include "mergesort.h"
 #include "quicksort.h"
@@ -21,6 +25,7 @@
 
 #include "parallel_mergesort.h"
 #include "parallel_quicksort.h"
+#include "parallel_insertsort.h"
 #include "parallel_selectsort.h"
 
 #include "utils.h"
