@@ -6,6 +6,9 @@
 <li>bidirectional select sort</li>
 <li>parallel bidirectional select sort</li>
 <li>insert sort</li>
+<li>parallel insert sort</li>
+<li>insert sort with guarded key</li>
+<li>parallel insert sort with guarded key</li>
 <li>quick sort</li>
 <li>parallel quick sort</li>
 <li>quick sort with CutOff</li>
