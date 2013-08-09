@@ -8,9 +8,12 @@ unsigned long getBlocksSize(unsigned long, unsigned long);
 void fillVector(std::vector<unsigned int>&, int);
 
 template<class T>
-void isOrdered(std::vector<T>& src)
+void isOrdered(std::vector<T>& src) { isOrdered(src, 1); }
+
+template<class T>
+void isOrdered(std::vector<T>& src, const unsigned long nPerThread)
 {
-	const unsigned long nThreads = getCountThreads(src.size(), 1);
+	const unsigned long nThreads = getCountThreads(src.size(), nPerThread);
 	const unsigned long nBlockSize = getBlocksSize(src.size(), nThreads);
 
 	std::vector<std::thread> threads(nThreads - 1);
@@ -21,7 +24,7 @@ void isOrdered(std::vector<T>& src)
 			for (int j = nPos + 1; j < nPos + nBlockSize - 1; ++j)
 			{
 				if (src[j - 1] > src[j])
-					std::cout << "Wrong order! Index:" << j << " Prev:" << src[j - 1] << " Cur:" << src[j] << std::endl;
+					std::cout << "!!!Wrong order! Index:" << j << " Prev:" << src[j - 1] << " Cur:" << src[j] << std::endl;
 			}
 		});
 	}
@@ -35,8 +38,14 @@ void isOrdered(std::vector<T>& src)
 	for (int i = nBlockSize; i < src.size(); i += nBlockSize)
 	{
 		if (src[i - 1] > src[i])
-			std::cout << "Wrong order! Index:" << i << " Prev:" << src[i - 1] << " Cur:" << src[i] << std::endl;
+			std::cout << "!!!Wrong order! Index:" << i << " Prev:" << src[i - 1] << " Cur:" << src[i] << std::endl;
 	}
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
+
+// 	for (int j = 1; j < src.size(); ++j)
+// 	{
+// 		if (src[j - 1] > src[j])
+// 			std::cout << "!!!Wrong order! Index:" << j << " Prev:" << src[j - 1] << " Cur:" << src[j] << std::endl;
+// 	}
 }

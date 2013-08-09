@@ -16,7 +16,7 @@ inline void parallel_shellSort(T* a, long nLength)
 	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < (nThreads - 1); ++i)
 	{
-		threads[i] = std::thread(&shellSort<T>, a + i*nBlockSize, nBlockSize);
+		threads[i] = std::thread(&shellSort<T>, a + i*nBlockSize, nBlockSize - 1);
 	}
 	shellSort(a + (nThreads - 1)*nBlockSize, nLength - (nThreads - 1)*nBlockSize);
 

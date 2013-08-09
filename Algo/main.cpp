@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
 	srand (time(NULL));
 
-	const int countElem = 1000000;
+	const int countElem = 1000;
 	std::vector<unsigned int> src;
 	src.reserve(countElem);
 	fillVector(src, countElem);
@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel Quick sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_QUICKSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel Quick sort with CUTOFF, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_QUICKSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel Quick not recursive, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_QUICKSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel insert sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_INSERTSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel insert sort with guarded key, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_INSERTSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel insert binary sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_INSERTSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel merge sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_MERGESORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel select sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_SELECTSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -155,7 +155,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel select sort bidirectional, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_SELECTSORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -171,7 +171,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel bubble sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_BUBBLESORT_MIN_PER_THREAD);
 
 	fillVector(src, countElem);
 	start = std::chrono::high_resolution_clock::now();
@@ -187,7 +187,7 @@ int main(int argc, char* argv[])
 	stop = std::chrono::high_resolution_clock::now();
 	duration = std::chrono::duration<double>(stop - start).count();
 	std::cout << "Parallel shell sort, total time: " << duration << std::endl;
-	isOrdered(src);
+	isOrdered(src, PARALLEL_SHELLSORT_MIN_PER_THREAD);
 
 	return 0;
 }
