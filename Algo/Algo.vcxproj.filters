@@ -56,5 +56,11 @@
     <ClInclude Include="parallel_insertsort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bubblesort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parallel_bubblesort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

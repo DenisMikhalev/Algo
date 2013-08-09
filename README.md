@@ -1,6 +1,8 @@
 ﻿Some algorithms
 --------------------------------
 <ul>
+<li>bubble sort</li>
+<li>parallel bubble sort</li>
 <li>select sort</li>
 <li>parallel select sort</li>
 <li>bidirectional select sort</li>
