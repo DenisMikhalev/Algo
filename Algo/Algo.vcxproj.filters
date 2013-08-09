@@ -65,7 +65,7 @@
     <ClInclude Include="shellsort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="parallel_shellSort.h">
+    <ClInclude Include="parallel_shellsort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
