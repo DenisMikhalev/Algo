@@ -1,6 +1,59 @@
 #pragma once
 
 template<class T>
+void mergeWithoutBuffer(T* f, T* m, T* l)
+{
+	if (f == m || m == l)
+		return;
+
+	long len1 = m - f;
+	long len2 = l - m;
+
+	if (len1 + len2 == 2)
+	{
+		if (*m < *f)
+			std::iter_swap(f, m);
+		return;
+	}
+
+	T* first_cut = f;
+	T* second_cut = m;
+
+	long len11 = 0;
+	long len22 = 0;
+
+	if (len1 > len2)
+	{
+		len11 = len1 / 2;
+		std::advance(first_cut, len11);
+		second_cut = std::lower_bound(m, l, *first_cut);
+		len22 = std::distance(m, second_cut);
+	}
+	else
+	{
+		len22 = len2 / 2;
+		std::advance(second_cut, len22);
+		first_cut = std::upper_bound(f, m, *second_cut);
+		len11 = std::distance(f, first_cut);
+	}
+
+	std::rotate(first_cut, m, second_cut);
+	T* new_middle = first_cut;
+	std::advance(new_middle, std::distance(m, second_cut));
+	mergeWithoutBuffer(f, first_cut, new_middle);
+	mergeWithoutBuffer(new_middle, second_cut, l);
+}
+
+template<class T>
+inline void inplaceMerge(T* f, T* m, T* l)
+{
+	if (f == m || m == l)
+		return;
+
+	mergeWithoutBuffer(f, m, l);
+}
+
+template<class T>
 inline void merge(T* pSrc, long nBlockSize, long nLength)
 {
 	if (nBlockSize >= nLength)
@@ -12,9 +65,11 @@ inline void merge(T* pSrc, long nBlockSize, long nLength)
 	int nBlocks = nLength / nBlockSize;
 	for (int j = 1; j < nBlocks; ++j)
 	{
-		std::inplace_merge(pBegin, pBegin + j*nBlockSize, pBegin + (j + 1)*nBlockSize);
+		//std::inplace_merge(pBegin, pBegin + j*nBlockSize, pBegin + (j + 1)*nBlockSize);
+		inplaceMerge(pBegin, pBegin + j*nBlockSize, pBegin + (j + 1)*nBlockSize);
 	}
-	std::inplace_merge(pBegin, pBegin + nBlocks*nBlockSize, pBegin + nLength);
+	//std::inplace_merge(pBegin, pBegin + nBlocks*nBlockSize, pBegin + nLength);
+	inplaceMerge(pBegin, pBegin + nBlocks*nBlockSize, pBegin + nLength);
 }
 
 template<class T>
