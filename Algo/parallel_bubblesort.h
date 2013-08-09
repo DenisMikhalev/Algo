@@ -10,7 +10,6 @@ inline void parallel_bubbleSort(T* a, long nLength)
 	if (nBlockSize < PARALLEL_BUBBLESORT_CUTOFF)
 	{
 		quickSort(a, nLength);
-		std::sort(begin + nBlockSize*nThreads, begin + nLength);
 		return;
 	}
 

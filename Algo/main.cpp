@@ -173,5 +173,21 @@ int main(int argc, char* argv[])
 	std::cout << "Parallel bubble sort, total time: " << duration << std::endl;
 	isOrdered(src);
 
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	shellSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Shell sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_shellSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel shell sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
 	return 0;
 }

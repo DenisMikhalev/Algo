@@ -155,8 +155,10 @@
     <ClInclude Include="parallel_mergesort.h" />
     <ClInclude Include="parallel_quicksort.h" />
     <ClInclude Include="parallel_selectsort.h" />
+    <ClInclude Include="parallel_shellSort.h" />
     <ClInclude Include="quicksort.h" />
     <ClInclude Include="selectsort.h" />
+    <ClInclude Include="shellsort.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
