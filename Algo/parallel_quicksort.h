@@ -17,14 +17,11 @@ inline void parallel_quickSort(T* a, long nLength)
 	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < (nThreads - 1); ++i)
 	{
-		threads[i] = std::thread(&quickSort<T>, a, nBlockSize);
-		std::advance(a, nBlockSize);
+		threads[i] = std::thread(&quickSort<T>, a + i*nBlockSize, nBlockSize);
 	}
-	quickSort(a, nBlockSize);
+	quickSort(a + (nThreads - 1)*nBlockSize, nLength - (nThreads - 1)*nBlockSize);
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
-
-	std::sort(begin + nBlockSize*nThreads, begin + nLength);
 
 	merge(begin, nBlockSize, nLength);
 }
@@ -46,14 +43,11 @@ inline void parallel_quickSortCutoff(T* a, long nLength)
 	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < (nThreads - 1); ++i)
 	{
-		threads[i] = std::thread(&quickSortCutoff<T>, a, nBlockSize);
-		std::advance(a, nBlockSize);
+		threads[i] = std::thread(&quickSortCutoff<T>, a + i*nBlockSize, nBlockSize);
 	}
-	quickSortCutoff(a, nBlockSize);
+	quickSortCutoff(a + (nThreads - 1)*nBlockSize, nLength - (nThreads - 1)*nBlockSize);
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
-
-	std::sort(begin + nBlockSize*nThreads, begin + nLength);
 
 	merge(begin, nBlockSize, nLength);
 }
@@ -75,14 +69,11 @@ inline void parallel_quickSortNotR(T* a, long nLength)
 	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < (nThreads - 1); ++i)
 	{
-		threads[i] = std::thread(&quickSortNotR<T>, a, nBlockSize);
-		std::advance(a, nBlockSize);
+		threads[i] = std::thread(&quickSortNotR<T>, a + i*nBlockSize, nBlockSize);
 	}
-	quickSortNotR(a, nBlockSize);
+	quickSortNotR(a + (nThreads - 1)*nBlockSize, nLength - (nThreads - 1)*nBlockSize);
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
-
-	std::sort(begin + nBlockSize*nThreads, begin + nLength);
 
 	merge(begin, nBlockSize, nLength);
 }

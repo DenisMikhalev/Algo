@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
 	srand (time(NULL));
 
-	const int countElem = 100000;
+	const int countElem = 1000000;
 	std::vector<unsigned int> src;
 	src.reserve(countElem);
 	fillVector(src, countElem);

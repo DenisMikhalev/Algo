@@ -16,11 +16,9 @@ inline void parallel_selectSort(T* a, long nLength)
 	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < (nThreads - 1); ++i)
 	{
-		threads[i] = std::thread(&selectSort<T>, a, nBlockSize);
-		std::advance(a, nBlockSize);
+		threads[i] = std::thread(&selectSort<T>, a + i*nBlockSize, nBlockSize);
 	}
-	selectSort(a, nBlockSize);
-
+	selectSort(a + (nThreads - 1)*nBlockSize, nLength - (nThreads - 1)*nBlockSize);
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 	merge(begin, nBlockSize, nLength);
@@ -42,11 +40,9 @@ inline void parallel_selectBiSort(T* a, long nLength)
 	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < (nThreads - 1); ++i)
 	{
-		threads[i] = std::thread(&selectBiSort<T>, a, nBlockSize);
-		std::advance(a, nBlockSize);
+		threads[i] = std::thread(&selectBiSort<T>, a + i*nBlockSize, nBlockSize);
 	}
-	selectBiSort(a, nBlockSize);
-
+	selectBiSort(a + (nThreads - 1)*nBlockSize, nLength - (nThreads - 1)*nBlockSize);
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 	merge(begin, nBlockSize, nLength);

@@ -12,7 +12,7 @@ void parallel_mergeSort(T* a, long nLength)
 		return;
 	}
 
-	std::vector<std::thread> threads(nThreads);
+	std::vector<std::thread> threads(nThreads - 1);
 	for(unsigned long i = 0; i < nThreads - 1; ++i)
 	{
 		threads[i] = std::thread(&mergeSort<T>, a + i*nBlockSize, 0, nBlockSize);
