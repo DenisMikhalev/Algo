@@ -13,12 +13,14 @@
 <li>parallel insert sort with guarded key</li>
 <li>insert binary sort</li>
 <li>parallel insert binary sort</li>
+<li>shell sort</li>
+<li>parallel shell sort</li>
+<li>merge sort
+<li>parallel merge sort</li>
 <li>quick sort</li>
 <li>parallel quick sort</li>
 <li>quick sort with CutOff</li>
 <li>parallel quick sort with CutOff</li>
 <li>quick sort, not recursive</li>
 <li>parallel quick sort, not recursive</li>
-<li>merge sort
-<li>parallel merge sort</li>
 </ul>
