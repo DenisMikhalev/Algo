@@ -6,11 +6,10 @@ inline void parallel_quickSort(T* a, long nLength)
 	unsigned long nThreads = getCountThreads(nLength, PARALLEL_QUICKSORT_MIN_PER_THREAD);
 	unsigned long nBlockSize = getBlocksSize(nLength, nThreads);
 
-	T* begin = a;
 	if (nBlockSize < PARALLEL_QUICKSORT_CUTOFF)
 	{
 		quickSort(a, nLength);
-		std::sort(begin + nBlockSize*nThreads, begin + nLength);
+		std::sort(a + nBlockSize*nThreads, a + nLength);
 		return;
 	}
 
@@ -23,7 +22,7 @@ inline void parallel_quickSort(T* a, long nLength)
 
 	std::for_each(threads.begin(), threads.end(), std::mem_fn(&std::thread::join));
 
-	merge(begin, nBlockSize, nLength);
+	merge(a, nBlockSize, nLength);
 }
 
 template<class T>
