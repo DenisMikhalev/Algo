@@ -24,5 +24,5 @@
 <li>quick sort, not recursive</li>
 <li>parallel quick sort, not recursive</li>
 <li>heap sort</li>
-<li>parallel sort</li>
+<li>parallel heap sort</li>
 </ul>
