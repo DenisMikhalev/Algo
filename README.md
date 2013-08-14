@@ -23,4 +23,6 @@
 <li>parallel quick sort with CutOff</li>
 <li>quick sort, not recursive</li>
 <li>parallel quick sort, not recursive</li>
+<li>heap sort</li>
+<li>parallel sort</li>
 </ul>
