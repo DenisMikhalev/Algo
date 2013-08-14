@@ -148,9 +148,11 @@
   <ItemGroup>
     <ClInclude Include="all.h" />
     <ClInclude Include="bubblesort.h" />
+    <ClInclude Include="heapsort.h" />
     <ClInclude Include="insertsort.h" />
     <ClInclude Include="mergesort.h" />
     <ClInclude Include="parallel_bubblesort.h" />
+    <ClInclude Include="parallel_heapsort.h" />
     <ClInclude Include="parallel_insertsort.h" />
     <ClInclude Include="parallel_mergesort.h" />
     <ClInclude Include="parallel_quicksort.h" />

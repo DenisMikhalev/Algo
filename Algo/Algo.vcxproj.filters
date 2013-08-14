@@ -68,5 +68,11 @@
     <ClInclude Include="parallel_shellsort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="heapsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parallel_heapsort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

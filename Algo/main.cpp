@@ -189,5 +189,21 @@ int main(int argc, char* argv[])
 	std::cout << "Parallel shell sort, total time: " << duration << std::endl;
 	isOrdered(src, PARALLEL_SHELLSORT_MIN_PER_THREAD);
 
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	heapSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Heap sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
+	fillVector(src, countElem);
+	start = std::chrono::high_resolution_clock::now();
+	parallel_heapSort(&src.front(), src.size());
+	stop = std::chrono::high_resolution_clock::now();
+	duration = std::chrono::duration<double>(stop - start).count();
+	std::cout << "Parallel heap sort, total time: " << duration << std::endl;
+	isOrdered(src);
+
 	return 0;
 }

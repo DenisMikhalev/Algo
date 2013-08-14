@@ -20,6 +20,9 @@
 #define PARALLEL_BUBBLESORT_CUTOFF			5
 #define PARALLEL_BUBBLESORT_MIN_PER_THREAD	40
 
+#define PARALLEL_HEAPSORT_CUTOFF			5
+#define PARALLEL_HEAPSORT_MIN_PER_THREAD	40
+
 #include <algorithm>
 #include <thread>
 #include <future>
@@ -32,6 +35,7 @@
 #include "selectsort.h"
 #include "shellsort.h"
 #include "bubblesort.h"
+#include "heapsort.h"
 
 #include "parallel_mergesort.h"
 #include "parallel_quicksort.h"
@@ -39,5 +43,6 @@
 #include "parallel_selectsort.h"
 #include "parallel_shellsort.h"
 #include "parallel_bubblesort.h"
+#include "parallel_heapsort.h"
 
 #include "utils.h"
