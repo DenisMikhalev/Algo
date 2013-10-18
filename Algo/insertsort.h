@@ -3,7 +3,7 @@
 template<class T>
 void insertSort(T* a, long nLength)
 {
-	for (long i = 0; i < nLength; ++i)
+	for (long i = 1; i < nLength; ++i)
 	{
 		T x = a[i];
 
